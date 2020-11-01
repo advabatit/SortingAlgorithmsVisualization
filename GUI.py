@@ -59,7 +59,7 @@ def main():
 
 def generat(selected_algorithm : tkinter.StringVar, canvas : tkinter.Canvas):
     print(selected_algorithm.get())
-    data = [100, 200, 200, 300]
+    data = [1, 2, 2, 3]
     draw_sort(data, canvas)
 
 
@@ -67,10 +67,12 @@ def draw_sort(data : list, canvas : tkinter.Canvas):
     x_width = CANVAS_WIDTH / (len(data) + 1)
     offset = 30
     space = 10
-    for i, height in enumerate(data):
+    normalize_data = [i / max(data) for i in data]
+
+    for i, height in enumerate(normalize_data):
         # Top left
         x_start = i * x_width + offset + space
-        y_start = CANVAS_HEIGHT - height
+        y_start = CANVAS_HEIGHT - height * (CANVAS_HEIGHT - 40)
         
         # Bottom right
         x_end = (i + 1) * x_width + offset
