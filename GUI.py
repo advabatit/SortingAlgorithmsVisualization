@@ -20,11 +20,10 @@ scales_data = [[0, 10, 'Select Size'],
 data = []
 
 def main():
-
     # Variables 
     selected_algorithm = tkinter.StringVar()
     algorithm_list = ['Bubble Sort', 'Merge Sort']
-    buttons_data = [['Start', lambda : start_sort(speed_scale.get())],
+    buttons_data = [['Start', lambda : bubble_sort(data, draw_sort, speed_scale.get())],
                     ['Generate', lambda : generat(min_value_entery, max_value_entery, size_entery)]]
 
     base_layout()
@@ -43,6 +42,14 @@ def main():
 
 
 def base_layout():
+    """
+    Function that initialize the base layout
+    Args:
+        Nothing
+    Return:
+        Nothing
+    """
+
     root.title("Sorting Algorithms Visualization")
     root.maxsize(MAX_WIDTH, MAX_HEIGHT)
     root.config(bg='black')    
@@ -51,6 +58,14 @@ def base_layout():
     canvas.grid(row = 1, column = 0, padx = PAD_X_LAYOUT, pady = PAD_Y_LAYOUT)
 
 def init_scale():
+    """
+    Function that initalize the scales (size, min value, max value and speed)
+    Args:
+        Nothing
+    Return:
+        Min value (int), Max value (int), size (int) and speed (int)
+    """
+
     global scales_data
     values = [] # values[0] = size, values[1] = min, values[2] = max
 
@@ -64,6 +79,14 @@ def init_scale():
     return values[0], values[1], values[2], speed_scale
 
 def init_buttons(buttons_data : list):
+    """
+    Function that initalize the buttons
+    Args:
+        The buttons data (list): it contains the label of the button and the function (with args if exists)
+    Return:
+        Nothing
+    """
+    
     values = []
 
     for i in range(len(buttons_data)):
@@ -71,18 +94,33 @@ def init_buttons(buttons_data : list):
         values[i].grid(row = i, column = 3, padx = PAD_X, pady = PAD_Y, sticky = 'W')
 
 def generat(min : tkinter.Entry, max : tkinter.Entry, size_entery : tkinter.Entry):
+    """
+    Function that generate the data and present it to the screen
+    Args:
+        min entry (tkinter.Entry): represent the min value the user enter   
+        max entry (tkinter.Entry): represent the max value the user enter
+        size entry (tkinter.Entry): represent the size the user enter
+    Return:
+        Nothing
+    """
+
     global data
     data = []
+
     data = get_data(min, max, size_entery)
-    
     draw_sort(data, ['red' for x in range(len(data))])
 
-def start_sort(time):
-    global data
-    bubble_sort(data, draw_sort, time)
-
-
 def get_data(min : tkinter.Entry, max : tkinter.Entry, size_entery : tkinter.Entry) -> list:
+    """
+    Function gets the values from the tkinter.Entry and set the data list
+    Args:
+        min entry (tkinter.Entry): represent the min value the user enter
+        max entry (tkinter.Entry): represent the max value the user enter
+        size entry (tkinter.Entry): represent the size the user enter
+    Return:
+        data (list): the list we will need to sort later
+    """
+
     global data
 
     min_val = int(min.get())
@@ -95,6 +133,15 @@ def get_data(min : tkinter.Entry, max : tkinter.Entry, size_entery : tkinter.Ent
     return data
 
 def draw_sort(data : list, color : list):
+    """
+    Function that draw the data to the screen
+    Args:
+        data (list): the data we need to sort
+        color (list): which number to fill with which color (green or red)
+    Return:
+        Nothing
+    """
+
     canvas.delete('all')
 
     x_width = CANVAS_WIDTH / (len(data) + 1)
