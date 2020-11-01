@@ -60,6 +60,7 @@ def main():
 
 def generat(min : tkinter.Entry, max : tkinter.Entry, size_entery : tkinter.Entry):
     global data
+    data = []
     data = get_data(min, max, size_entery)
     
     draw_sort(data, ['red' for x in range(len(data))])
