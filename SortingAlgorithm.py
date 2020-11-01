@@ -1,4 +1,3 @@
-import tkinter
 import time
 
 def bubble_sort(data : list, draw_sort, sec):
@@ -11,21 +10,3 @@ def bubble_sort(data : list, draw_sort, sec):
                 time.sleep(sec)
     draw_sort(data, ['green' for _ in range(len(data))])
             
-def binary_search(num : int, data : list, end : int, start : int = 0):
-
-    mid = (end + start) // 2
-    print(mid)
-
-    if end < start:
-        print(f"The number {num} is not in the list")
-        return -1
-
-    if data[mid] == num:
-        print(f"Found the number {num} in the list")
-        return mid
-
-    elif num > data[mid]:
-        return binary_search(num, data, start = mid + 1, end = end)
-
-    else:
-        return binary_search(num, data, start, end = mid - 1)
