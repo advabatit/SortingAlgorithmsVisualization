@@ -1,7 +1,7 @@
 import tkinter
 from tkinter import ttk
 import random
-from SortingAlgorithm import bubble_sort
+from SortingAlgorithm import bubble_sort, quick_sort
 
 
 MAX_WIDTH, MAX_HEIGHT = 900, 600
@@ -22,8 +22,8 @@ data = []
 def main():
     # Variables 
     selected_algorithm = tkinter.StringVar()
-    algorithm_list = ['Bubble Sort', 'Merge Sort']
-    buttons_data = [['Start', lambda : bubble_sort(data, draw_sort, speed_scale.get())],
+    algorithm_list = ['Bubble Sort', 'Quick Sort', 'Merge Sort']
+    buttons_data = [['Start', lambda : start_algorithm(algorithm_menu, speed_scale.get())],
                     ['Generate', lambda : generat(min_value_entery, max_value_entery, size_entery)]]
 
     base_layout()
@@ -162,6 +162,17 @@ def draw_sort(data : list, color : list):
         canvas.create_text(x_start + 2, y_start, anchor='sw', text = str(data[i]))
 
     root.update_idletasks()
+
+def start_algorithm(algorithm_menu : ttk.Combobox, sec : int):
+    global data
+    if not data: print("There is no data to sort")
+
+    if algorithm_menu.get() == 'Bubble Sort':
+        bubble_sort(data, draw_sort, sec)
+
+    elif algorithm_menu.get() == 'Quick Sort':
+        quick_sort(data, draw_sort, sec, 0, len(data) - 1)
+        draw_sort(data, ['green' for _ in range(len(data))])
 
 if __name__ == '__main__':
     main()
