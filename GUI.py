@@ -1,7 +1,7 @@
 import tkinter
 from tkinter import ttk
 import random
-from SortingAlgorithm import bubble_sort, quick_sort
+from SortingAlgorithm import bubble_sort, quick_sort, merge_sort
 
 
 MAX_WIDTH, MAX_HEIGHT = 900, 600
@@ -172,7 +172,12 @@ def start_algorithm(algorithm_menu : ttk.Combobox, sec : int):
 
     elif algorithm_menu.get() == 'Quick Sort':
         quick_sort(data, draw_sort, sec, 0, len(data) - 1)
-        draw_sort(data, ['green' for _ in range(len(data))])
+        
+    elif algorithm_menu.get() == 'Merge Sort':
+        merge_sort(data, draw_sort, sec)
+    
+    draw_sort(data, ['green' for _ in range(len(data))])
+
 
 if __name__ == '__main__':
     main()
