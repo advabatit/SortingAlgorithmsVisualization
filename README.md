@@ -1,6 +1,6 @@
 # SortingAlgorithmsVisualization
 
-### What algorithms can you visualiz?
+### What algorithms can you visualize?
 - Bubble sort
 - Merge sort
 - Quick sort

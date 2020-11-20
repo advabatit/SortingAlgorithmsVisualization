@@ -164,6 +164,15 @@ def draw_sort(data : list, color : list):
     root.update_idletasks()
 
 def start_algorithm(algorithm_menu : ttk.Combobox, sec : int):
+    """
+    Function that start the algorithm by the user choice
+    Args:
+        algorithm_menu (ttk.Combobox): The menu that present the algorithm choices 
+        sec (int): The sec time to delay the sorting algorithm
+    Return:
+        Nothing
+    """
+
     global data
     if not data: print("There is no data to sort")
 
